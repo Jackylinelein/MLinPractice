@@ -128,6 +128,7 @@ By default, this data is used to train a classifier, which is specified by one o
 The classifier is then evaluated, using the evaluation metrics as specified through the following optional arguments:
 - `-a`or `--accuracy`: Classification accurracy (i.e., percentage of correctly classified examples).
 - `-p`or `--precision`: Classification precision (i.e., percentage of correctly positively classified examples).
+- `-k`or `--kappa`: Classification cohen's kappa (i.e., adjusting accuracy by the probability of random agreement).
 
 Moreover, the script support importing and exporting trained classifiers with the following optional arguments:
 - `-i` or `--import_file`: Load a trained classifier from the given pickle file. Ignore all parameters that configure the classifier to use and don't retrain the classifier.
