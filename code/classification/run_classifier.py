@@ -10,7 +10,7 @@ Created on Wed Sep 29 14:23:48 2021
 
 import argparse, pickle
 from sklearn.dummy import DummyClassifier
-from sklearn.metrics import accuracy_score, precision_score
+from sklearn.metrics import accuracy_score, precision_score, cohen_kappa_score
 
 # setting up CLI
 parser = argparse.ArgumentParser(description = "Classifier")
@@ -22,6 +22,7 @@ parser.add_argument("-m", "--majority", action = "store_true", help = "majority 
 parser.add_argument("-f", "--frequency", action = "store_true", help = "label frequency classifier")
 parser.add_argument("-a", "--accuracy", action = "store_true", help = "evaluate using accuracy")
 parser.add_argument("-p", "--precision", action = "store_true", help = "evaluate using precision")
+parser.add_argument("-k", "--kappa", action = "store_true", help = "evaluate using Cohen's kappa")
 args = parser.parse_args()
 
 # load data
@@ -55,9 +56,12 @@ evaluation_metrics = []
 if args.accuracy:
     evaluation_metrics.append(("accuracy", accuracy_score))
     
-elif args.precision:
+if args.precision:
     evaluation_metrics.append(("precision", precision_score))
 
+if args.kappa:
+    evaluation_metrics.append(("kappa", cohen_kappa_score))
+    
 # compute and print them
 for metric_name, metric in evaluation_metrics:
     print("    {0}: {1}".format(metric_name, metric(data["labels"], prediction)))
