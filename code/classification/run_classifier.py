@@ -19,6 +19,7 @@ parser.add_argument("-s", '--seed', type = int, help = "seed for the random numb
 parser.add_argument("-e", "--export_file", help = "export the trained classifier to the given location", default = None)
 parser.add_argument("-i", "--import_file", help = "import a trained classifier from the given location", default = None)
 parser.add_argument("-m", "--majority", action = "store_true", help = "majority class classifier")
+parser.add_argument("-f", "--frequency", action = "store_true", help = "label frequency classifier")
 parser.add_argument("-a", "--accuracy", action = "store_true", help = "evaluate using accuracy")
 parser.add_argument("-p", "--precision", action = "store_true", help = "evaluate using precision")
 args = parser.parse_args()
@@ -38,6 +39,12 @@ else:   # manually set up a classifier
         # majority vote classifier
         print("    majority vote classifier")
         classifier = DummyClassifier(strategy = "most_frequent", random_state = args.seed)
+        classifier.fit(data["features"], data["labels"])
+    
+    elif args.frequency:
+        # label frequency classifier
+        print("    label frequency classifier")
+        classifier = DummyClassifier(strategy = "stratified", random_state = args.seed)
         classifier.fit(data["features"], data["labels"])
 
 # now classify the given data
