@@ -127,7 +127,8 @@ The classifier is then evaluated, using the evaluation metrics as specified thro
 - `-a`or `--accuracy`: Classification accurracy (i.e., percentage of correctly classified examples).
 - `-p`or `--precision`: Classification precision (i.e., percentage of correctly positively classified examples).
 - `-k`or `--kappa`: Classification cohen's kappa (i.e., adjusting accuracy by the probability of random agreement).
-
+- `-r`or `--recall`: Classification recall (i.e., tp / (tp+fn) where tp is the number of true positives and fc the number of false negatives. The recall is intuitively the ability of the classifier to find all possitive samples)
+- `f1`or `--f_measure`: Classification f-measure or f1 score (i.e. a weigthed average of the precision and recall, where an F1 score reaches its best value at 1 and worst score at 0. The relative contribution of precision and recall to the F1 score are equal.)
 Moreover, the script support importing and exporting trained classifiers with the following optional arguments:
 - `-i` or `--import_file`: Load a trained classifier from the given pickle file. Ignore all parameters that configure the classifier to use and don't retrain the classifier.
 - `-e` or `--export_file`: Export the trained classifier into the given pickle file.
