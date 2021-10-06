@@ -98,7 +98,7 @@ All python scripts and classes for dimensionality reduction can be found in `cod
 The script `reduce_dimensionality.py` takes care of the overall dimensionality reduction procedure and can be invoked as follows:
 
 ```python -m code.dimensionality_reduction.reduce_dimensionality path/to/input.pickle path/to/output.pickle```
-Here, `input.pickle` is the respective training, validation, or test set file created by `extract_features.py`. 
+Here, `input.pickle` is the respective training, validation, or test set file created by `extract_features.py`.
 The file `output.pickle` will be used to store the results of the dimensionality reduction process, containing `"features"` (which are the selected/projected ones) and `"labels"` (same as in the input file).
 
 The dimensionality reduction method to be applied can be configured with the following optional parameters:
@@ -118,22 +118,23 @@ All python scripts and classes for classification can be found in `code/classifi
 
 The script `run_classifier.py` can be used to train and/or evaluate a given classifier. It can be executed as follows:
 ```python -m code.classification.run_classifier path/to/input.pickle```
-Here, `input.pickle` is a pickle file of the respective data subset, produced by either `extract_features.py` or `reduce_dimensionality.py`. 
+Here, `input.pickle` is a pickle file of the respective data subset, produced by either `extract_features.py` or `reduce_dimensionality.py`.
 
 By default, this data is used to train a classifier, which is specified by one of the following optional arguments:
 - `-m` or `--majority`: Majority vote classifier that always predicts the majority class.
-- `-f` or `--frequency`: Dummy classifier that makes predictions based on the label frequency in the training data.
+- `-f` or `--frequency`: Dummy classifier that predicts on label frequency in the training data.
 
 The classifier is then evaluated, using the evaluation metrics as specified through the following optional arguments:
 - `-a`or `--accuracy`: Classification accurracy (i.e., percentage of correctly classified examples).
-- `-k`or `--kappa`: Cohen's kappa (i.e., adjusting accuracy for probability of random agreement).
-
-
+- `-p`or `--precision`: Classification precision (i.e., percentage of correctly positively classified examples).
+- `-k`or `--kappa`: Classification cohen's kappa (i.e., adjusting accuracy by the probability of random agreement).
+- `-r`or `--recall`: Classification recall (i.e., tp / (tp+fn) where tp is the number of true positives and fc the number of false negatives. The recall is intuitively the ability of the classifier to find all possitive samples)
+- `f1`or `--f_measure`: Classification f-measure or f1 score (i.e. a weigthed average of the precision and recall, where an F1 score reaches its best value at 1 and worst score at 0. The relative contribution of precision and recall to the F1 score are equal.)
 Moreover, the script support importing and exporting trained classifiers with the following optional arguments:
 - `-i` or `--import_file`: Load a trained classifier from the given pickle file. Ignore all parameters that configure the classifier to use and don't retrain the classifier.
 - `-e` or `--export_file`: Export the trained classifier into the given pickle file.
 
-Finally, the optional argument `-s` or `--seed` determines the seed for intializing the random number generator (which may be important for some classifiers). 
+Finally, the optional argument `-s` or `--seed` determines the seed for intializing the random number generator (which may be important for some classifiers).
 Using the same seed across multiple runs ensures reproducibility of the results. If no seed is set, the current system time will be used.
 
 ## Application
