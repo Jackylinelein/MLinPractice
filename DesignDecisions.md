@@ -10,7 +10,11 @@ In the following, our design decisions of our adjustments inside the project are
 ## Dimensionality Reduction
 
 ## Classification
+
+### Classifier
 - We implemented a new kind of classifier, using the dummy classifier class. It predicts on lable frequency in the training data.
+
+### Evaluation Metrics
 - We have integrateed different evaluation metrics newly learned in the lecture into our project as an extra. These are precision, cohen's kappa, recall and f1 measure.
 
 ## Unit Tests
