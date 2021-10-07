@@ -1,5 +1,5 @@
 # Machine Learning in Practice
-Source code for the practical Seminar "Machine Learning in Practice", taught at Osnabr�ck University in the winter term 2021/2022 at the Insitute of Cognitive Science.
+Source code for the practical Seminar "Machine Learning in Practice", taught at Osnabrück University in the winter term 2021/2022 at the Insitute of Cognitive Science.
 
 As data source, we use the "Data Science Tweets 2010-2021" data set (version 3) by Ruchi Bhatia from [Kaggle](https://www.kaggle.com/ruchi798/data-science-tweets). The goal of our example project is to predict which tweets will go viral, i.e., receive many likes and retweets.
 
@@ -57,6 +57,7 @@ The script `run_preprocessing.py` is used to run various preprocessing steps on 
 Here, `input.csv` is a csv file (ideally the output of `create_labels.py`), while `output.csv` is the csv file where the output will be written.
 The preprocessing steps to take can be configured with the following flags:
 - `-p` or `--punctuation`: A new column "tweet_no_punctuation" is created, where all punctuation is removed from the original tweet. (See `code/preprocessing/punctuation_remover.py` for more details)
+- `-t`or `--tokenize`: Tokenize the given column (can be specified by `--tokenize_input`, default = "tweet"), and create new column with suffix "_tokenized" containing tokenized tweet.
 
 Moreover, the script accepts the following optional parameters:
 - `-e` or `--export` gives the path to a pickle file where an sklearn pipeline of the different preprocessing steps will be stored for later usage.
@@ -127,7 +128,8 @@ The classifier is then evaluated, using the evaluation metrics as specified thro
 - `-a`or `--accuracy`: Classification accurracy (i.e., percentage of correctly classified examples).
 - `-p`or `--precision`: Classification precision (i.e., percentage of correctly positively classified examples).
 - `-k`or `--kappa`: Classification cohen's kappa (i.e., adjusting accuracy by the probability of random agreement).
-
+- `-r`or `--recall`: Classification recall (i.e., tp / (tp+fn) where tp is the number of true positives and fc the number of false negatives. The recall is intuitively the ability of the classifier to find all possitive samples)
+- `f1`or `--f_measure`: Classification f-measure or f1 score (i.e. a weigthed average of the precision and recall, where an F1 score reaches its best value at 1 and worst score at 0. The relative contribution of precision and recall to the F1 score are equal.)
 Moreover, the script support importing and exporting trained classifiers with the following optional arguments:
 - `-i` or `--import_file`: Load a trained classifier from the given pickle file. Ignore all parameters that configure the classifier to use and don't retrain the classifier.
 - `-e` or `--export_file`: Export the trained classifier into the given pickle file.
