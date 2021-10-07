@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Sample the 5 most frequent users.
+
+@author: jnaether
+"""
+import argparse, csv
+import pandas as pd
+from code.util import NUMBER_OF_MOST_FREQUENT_USERS
+
+# setting up CLI
+parser = argparse.ArgumentParser(description = "Various preprocessing steps")
+parser.add_argument("input_file", help = "path to the input csv file")
+parser.add_argument("output_file", help = "path to the output csv file")
+parser.add_argument("-n", "--number_of_users", help = "shows the five most freuquent users", default = NUMBER_OF_MOST_FREQUENT_USERS)
+args = parser.parse_args()
+
+#load data
+df = pd.read_csv(args.input_file, quoting = csv.QUOTE_NONNUMERIC, lineterminator = "\n")
+
+# note down all usernames and their associated number of tweets
+results = []
+# results = [] empty array, two columns: username, number of tweets
+# scratch thourgh data, collect total number of tweets
+# get results
+
+
+# store the results
+results.to_csv(args.output_file, index = False, quoting = csv.QUOTE_NONNUMERIC, line_terminator = "\n")
