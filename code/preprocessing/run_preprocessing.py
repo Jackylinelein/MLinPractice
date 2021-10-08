@@ -38,7 +38,7 @@ if args.punctuation:
 if args.tokenize:
     preprocessors.append(Tokenizer(args.tokenize_input, args.tokenize_input + SUFFIX_TOKENIZED))
 if args.count:
-    preprocessors.append(Counter(args.count_input, args.count_input + SUFFIX_COUNTED))
+    preprocessors.append(Counter(args.counted_input, args.counted_input + SUFFIX_COUNTED))
 
 # call all preprocessing steps
 for preprocessor in preprocessors:
