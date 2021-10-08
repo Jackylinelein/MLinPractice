@@ -22,8 +22,10 @@ class Counter(Preprocessor):
         
         total_count = []
         
-        for element in inputs[0]:
-         
-            total_count.append(inputs[0].count(element))
+        # convert to normal list, so that the count function can be used
+        input_list = inputs[0].values.tolist()
         
+        for element in input_list:
+            total_count.append(input_list.count(element))           
+            
         return total_count
