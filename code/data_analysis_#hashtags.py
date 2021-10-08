@@ -51,6 +51,8 @@ elif(show=='PERCENTAGE'):
         
     plt.plot(viral_tweets, label='percent of viral tweets')
     plt.plot(line, color = 'red', label = "threshold")
+    plt.xlabel("Number of Hashtags")
+    plt.ylabel("Percentage of viral tweets")
     plt.legend()
     
      
