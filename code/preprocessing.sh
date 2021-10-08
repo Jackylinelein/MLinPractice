@@ -17,7 +17,3 @@ python -m code.preprocessing.run_preprocessing data/preprocessing/labeled.csv da
 # split the data set
 echo "  splitting the data set"
 python -m code.preprocessing.split_data data/preprocessing/preprocessed.csv data/preprocessing/split/ -s 42
-
-# search for most freuqent users of given data set
-echo "   most frequent users"
-python -m code.preprocessing.most_frequent_users data/preprocessing/preprocessed.csv data/metadata/most_frequent_users.csv -n
