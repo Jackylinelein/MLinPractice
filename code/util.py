@@ -19,5 +19,4 @@ COLUMN_LABEL = "label"
 COLUMN_PUNCTUATION = "tweet_no_punctuation"
 
 SUFFIX_TOKENIZED = "_tokenized"
-
-NUMBER_OF_MOST_FREQUENT_USERS = 5
+SUFFIX_COUNTED = "_count"
