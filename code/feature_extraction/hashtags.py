@@ -15,7 +15,7 @@ class Hashtags(FeatureExtractor):
     
     # constructor
     def __init__(self, input_column):
-        super().__init__([input_column], "{1}_#hashtags".format(input_column))
+        super().__init__([input_column], "{0}_#hashtags".format(input_column))
     
     # don't need to fit, so don't overwrite _set_variables()
     
@@ -35,6 +35,5 @@ class Hashtags(FeatureExtractor):
             # in it -> at least 1 hashtag, add one hashtag number to current tweet
             if(len(inputs[0][i])>2):
                 num_hashtags[i][0] +=1
-            
-        # return created array
+                  
         return num_hashtags
