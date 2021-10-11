@@ -11,8 +11,10 @@ import pickle
 from matplotlib import pyplot as plt
 import numpy as np
 
+#select the plot you want to use: either percentage of viral tweets w.r.t. #hashtags  = "PERCENTAGE"
+# or "TOTAL" which means the absolute number of tweets (viral and not viral) w.r.t. #hashtags.
 show = 'TOTAL'
-show = 'PERCENTAGE'
+#show = 'PERCENTAGE'
 
 
 ## TODO: Write own data_analysis graph with methods for percentage of viral tweets w.r.t. something and total number.
