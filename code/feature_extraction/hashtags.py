@@ -10,12 +10,12 @@ Created on Fri Oct  8 12:19:47 2021
 import numpy as np
 from code.feature_extraction.feature_extractor import FeatureExtractor
 
-# class for extracting the character-based length as a feature
+# class for extracting the number of hashtags in a tweet as a feature
 class Hashtags(FeatureExtractor):
     
     # constructor
     def __init__(self, input_column):
-        super().__init__([input_column], "{0}_charlength".format(input_column))
+        super().__init__([input_column], "{1}_#hashtags".format(input_column))
     
     # don't need to fit, so don't overwrite _set_variables()
     
