@@ -21,6 +21,8 @@ with open("data/feature_extraction/training.pickle", "rb") as f_in:
     data = pickle.load(f_in)
 
 features = data["features"]
+# only take the hashtag feature - probably some keyword is usable, but don't know how to access it right now.
+features = features[:, 1:2]
 labels = data["labels"]
 
 pos = features[labels]
