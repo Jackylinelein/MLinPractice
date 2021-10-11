@@ -58,6 +58,8 @@ Here, `input.csv` is a csv file (ideally the output of `create_labels.py`), whil
 The preprocessing steps to take can be configured with the following flags:
 - `-p` or `--punctuation`: A new column "tweet_no_punctuation" is created, where all punctuation is removed from the original tweet. (See `code/preprocessing/punctuation_remover.py` for more details)
 - `-t`or `--tokenize`: Tokenize the given column (can be specified by `--tokenize_input`, default = "tweet"), and create new column with suffix "_tokenized" containing tokenized tweet.
+- `-c`or `--count`: Count the number of elements of the given column (can be specified by `--counted_input`, default = "username"), and create new column with suffix "_count" containing the total number of each element inside the list.
+
 
 Moreover, the script accepts the following optional parameters:
 - `-e` or `--export` gives the path to a pickle file where an sklearn pipeline of the different preprocessing steps will be stored for later usage.
@@ -131,6 +133,7 @@ The classifier is then evaluated, using the evaluation metrics as specified thro
 - `-k`or `--kappa`: Classification cohen's kappa (i.e., adjusting accuracy by the probability of random agreement).
 - `-r`or `--recall`: Classification recall (i.e., tp / (tp+fn) where tp is the number of true positives and fc the number of false negatives. The recall is intuitively the ability of the classifier to find all possitive samples)
 - `f1`or `--f_measure`: Classification f-measure or f1 score (i.e. a weigthed average of the precision and recall, where an F1 score reaches its best value at 1 and worst score at 0. The relative contribution of precision and recall to the F1 score are equal.)
+
 Moreover, the script support importing and exporting trained classifiers with the following optional arguments:
 - `-i` or `--import_file`: Load a trained classifier from the given pickle file. Ignore all parameters that configure the classifier to use and don't retrain the classifier.
 - `-e` or `--export_file`: Export the trained classifier into the given pickle file.
@@ -146,3 +149,15 @@ The script `application.py` provides a simple command line interface, where the 
 The script can be invoked as follows:
 ```python -m code.application.application path/to/preprocessing.pickle path/to/feature_extraction.pickle path/to/dimensionality_reduction.pickle path/to/classifier.pickle```
 The four pickle files correspond to the exported versions for the different pipeline steps as created by `run_preprocessing.py`, `extract_features.py`, `reduce_dimensionality.py`, and `run_classifier.py`, respectively, with the `-e` option.
+
+
+## Unit Tests
+Inside the folder `test` all unit tests are collected. They are organized in sub-folders based on the individual pipeline steps.
+The unit tests can be executed in general as follows:
+
+`python -m unittest test.<sub_folder>.<original_file_name>_test`
+
+### Preprocessing
+
+- The class `Counter` (file: `counter.py`) can be tested using: `python -m unittest test.preprocessing.counter_test`
+
