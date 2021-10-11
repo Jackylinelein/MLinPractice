@@ -16,26 +16,20 @@ import numpy as np
 def plot():
     with open("data/feature_extraction/training.pickle", "rb") as f_in:
         data = pickle.load(f_in)
-        y_axis = "Percentage of viral tweets"
-
         labels = data["labels"]
-        
-        
-        
+  
         for i in range(len(data["feature_names"])):
             x_axis = data["feature_names"][i]
-            print(x_axis)
             feature = data["features"][:, i:i+1]
             
             pos = feature[labels]
             neg_index = np.array([not x for x in labels])
             neg = feature[neg_index]
-            print(feature)
+       
 
             max_value = (int)(max(feature)[0])
             min_value = (int)(min(feature)[0])
-            print(max_value)
-            print(min_value)
+          
             
             viral_tweets = np.zeros((max_value,1))
             baseline = np.ones((max_value,1))
@@ -45,7 +39,8 @@ def plot():
                 lame = np.count_nonzero(neg == i)
                 if(viral+lame>0):
                     viral_tweets[i][0] = viral/(lame+viral)
-                
+            
+            y_axis = "Percentage of viral tweets"
             plt.plot(viral_tweets, label=y_axis)
             plt.plot(baseline, color = 'red', label = "baseline")
             plt.xlabel(x_axis)
