@@ -2,7 +2,7 @@
 The project is based on the original github repo [MLinPractice](https://github.com/lbechberger/MLinPractice) by Lucas Bechberger. As part of the ML in Practice module in winter term 2021/2022 of the course of studies Cognitive Science/Cognitive Computing at University of Osnabrueck, the project is expaned in various parts by [Hendrik Timm](https://github.com/sweedp) and [Jacqueline Naether](https://github.com/jackylinelein). In the following, the design decisions of the adjustments inside the project are presented and briefly explained to ensure the traceability of the decisions.
 
 ## Preprocessing
-
+All design decisions and functionalities of the newly implemented classes and functions of the preprocessing step will be explained in the following.
 ### Class Counter
 The `counter.py` (inherits from the class `preprocesser.py`) was integrated as an extension in the preprocessing steps. 
 This decision evolved from the idea that a possible feature could represent the total number of tweets a user made in the given period of time (data set limit).
