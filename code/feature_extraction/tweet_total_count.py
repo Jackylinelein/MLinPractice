@@ -21,8 +21,7 @@ class TweetTotalCount(FeatureExtractor):
     
     # don't need to fit, so don't overwrite _set_variables()
     
-    
-    # categorize tweeters in beginner, average, active and avid tweeters
+    # get values and reshape it in numpy array
     def _get_values(self, inputs):
                
         total_count = np.zeros((len(inputs[0]),1))
