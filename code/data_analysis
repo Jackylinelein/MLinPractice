@@ -1,0 +1,65 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Oct  7 13:01:20 2021
+
+@author: Hendrik Timm
+"""
+
+# plotting with matplotlib
+import pickle
+from matplotlib import pyplot as plt
+import numpy as np
+
+
+# create graphs for every extracted feature
+def plot():
+    with open("data/feature_extraction/training.pickle", "rb") as f_in:
+        data = pickle.load(f_in)
+        labels = data["labels"]
+  
+        for i in range(len(data["feature_names"])):
+            x_axis = data["feature_names"][i]
+            feature = data["features"][:, i:i+1]
+            
+            pos = feature[labels]
+            neg_index = np.array([not x for x in labels])
+            neg = feature[neg_index]
+       
+
+            max_value = (int)(max(feature)[0])
+            min_value = (int)(min(feature)[0])
+          
+            
+            viral_tweets = np.zeros((max_value,1))
+            baseline = np.ones((max_value,1))
+            for i in range(max_value):
+                baseline[i][0] = 0.1
+                viral = np.count_nonzero(pos == i)
+                lame = np.count_nonzero(neg == i)
+                if(viral+lame>0):
+                    viral_tweets[i][0] = viral/(lame+viral)
+            
+            y_axis = "Percentage of viral tweets"
+            plt.plot(viral_tweets, label=y_axis)
+            plt.plot(baseline, color = 'red', label = "baseline")
+            plt.xlabel(x_axis)
+            plt.ylabel(y_axis)
+            plt.legend()
+            plt.show()
+            
+            
+            # absolute number of tweets as a histogram w.r.t. feature
+            y_axis = "Number of Tweets"
+            plt.hist(feature, color='blue',label=" all tweets")
+            plt.hist(neg, color='red', label="not viral tweets")
+            plt.hist(pos, color='green', label= "viral tweets")
+            plt.legend()
+            plt.xlabel(x_axis)
+            plt.ylabel(y_axis)
+            plt.show()
+            
+plot()
+
+
+
