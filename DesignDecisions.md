@@ -23,6 +23,14 @@ The total number of occurences is then written in a new column called `<input_co
 For example, in addition to the default username, the number of occurrences of the same locations can also be counted.
 
 ### Feature Extraction
+All features which where extracted additionally to the original project are described in the following.
+#### Class TweetTotalCount
+The `tweet_total_count.py` (inherits from the class `feature_extractor.py`) extracts the feature total counts of tweets made by a useer in the given data set.
+The data is read from the given pandas data frame and written into a numpy array. 
+There is no further processing of the data from the input list itself, but it is required to transform the data into a numpy array 
+for further processing in the feature collector and the following steps behind. 
+For reasons of time, it was decided not to write a unit test for this application, 
+since the class TweetTotalCount is purely about the transformation of the data into a numpy array and no further processing of the data takes place.
 
 ### Dimensionality Reduction
 
