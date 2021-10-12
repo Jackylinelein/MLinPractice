@@ -22,7 +22,22 @@ The original pandas data frame and so the original input column is not changed.
 The total number of occurences is then written in a new column called `<input_columnname>_count` (default: `username_count`). 
 For example, in addition to the default username, the number of occurrences of the same locations can also be counted.
 
+#### Data Analysis
+The `data_analysis.py` can plot extracted features in order to have an impression if the feature has some valid information on how a viral tweet can be classified. For instance, for
+the number of hashtags in a tweet it seems to be better if the tweet has more than 5 hashtags.
+
 ### Feature Extraction
+#### #hashtags 
+The first feature is the number of hashtags for each tweet. The idea is that maybe there is a golden number of hashtags which makes the tweet more likeable/viral. For instance, if there is 
+no hashtag, it might just not reach a lot of people and hence it will probably not be viral. Therefore, in `hashtags.py` the number of hashtags are counted and stored.
+Since the hashtags are stored as a single string like '"["These", "are", hashtags"]"' we needed some workaround to count the number of hashtags. We decided to
+just count the "," in the whole string and look if the length of the string is > 2, because then it does not only contain "[]" but some hashtag in it.
+For instance:
+"[]" - length is not greater than 2 -> 0 hashtags
+"["coolhashtag"]" - length is greater than 2 -> +1 hashtag
+"["cool", "hashtag"]" -> length is greater than 2-> +1 hashtag; one time "," -> 2 hashtags in total
+...
+
 
 ### Dimensionality Reduction
 
@@ -30,7 +45,7 @@ For example, in addition to the default username, the number of occurrences of t
 
 #### Classifier
 - A new kind of classifier was implemented, using the dummy classifier class. It predicts on lable frequency in the training data.
-
+for later use.
 #### Evaluation Metrics
 Different evaluation metrics newly learned in the lecture were integrated into the project as an extra. These are:
 - precision
