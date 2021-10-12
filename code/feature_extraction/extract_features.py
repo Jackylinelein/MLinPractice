@@ -14,7 +14,8 @@ import numpy as np
 from code.feature_extraction.character_length import CharacterLength
 from code.feature_extraction.feature_collector import FeatureCollector
 from code.feature_extraction.hashtags import Hashtags
-from code.feature_extraction.date import Date
+from code.feature_extraction.date import Year, Month, WeekDay
+
 from code.util import COLUMN_TWEET, COLUMN_LABEL, COLUMN_HASHTAGS, COLUMN_DATE
 
 
@@ -49,7 +50,9 @@ else:    # need to create FeatureCollector manually
         features.append(Hashtags(COLUMN_HASHTAGS))
     
     if args.date:
-        features.append(Date(COLUMN_DATE))
+        features.append(Year(COLUMN_DATE))
+        features.append(Month(COLUMN_DATE))
+        features.append(WeekDay(COLUMN_DATE))
         
     # create overall FeatureCollector
     feature_collector = FeatureCollector(features)
