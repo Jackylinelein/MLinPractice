@@ -27,7 +27,16 @@ The `data_analysis.py` can plot extracted features in order to have an impressio
 the number of hashtags in a tweet it seems to be better if the tweet has more than 5 hashtags.
 
 ### Feature Extraction
-#### #hashtags 
+All features which where extracted additionally to the original project are described in the following.
+#### Class TweetTotalCount
+The `tweet_total_count.py` (inherits from the class `feature_extractor.py`) extracts the feature total counts of tweets made by a useer in the given data set.
+The data is read from the given pandas data frame and written into a numpy array. 
+There is no further processing of the data from the input list itself, but it is required to transform the data into a numpy array 
+for further processing in the feature collector and the following steps behind. 
+For reasons of time, it was decided not to write a unit test for this application, 
+since the class TweetTotalCount is purely about the transformation of the data into a numpy array and no further processing of the data takes place.
+
+#### Class #hashtags 
 The first feature is the number of hashtags for each tweet. The idea is that maybe there is a golden number of hashtags which makes the tweet more likeable/viral. For instance, if there is 
 no hashtag, it might just not reach a lot of people and hence it will probably not be viral. Therefore, in `hashtags.py` the number of hashtags are counted and stored.
 Since the hashtags are stored as a single string like '"["These", "are", hashtags"]"' we needed some workaround to count the number of hashtags. We decided to
@@ -37,7 +46,6 @@ For instance:
 "["coolhashtag"]" - length is greater than 2 -> +1 hashtag
 "["cool", "hashtag"]" -> length is greater than 2-> +1 hashtag; one time "," -> 2 hashtags in total
 ...
-
 
 ### Dimensionality Reduction
 
