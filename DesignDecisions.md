@@ -47,6 +47,12 @@ For instance:
 "["cool", "hashtag"]" -> length is greater than 2-> +1 hashtag; one time "," -> 2 hashtags in total
 ...
 
+#### Class WantedStr
+The `wanted_str.py` (inherits from the class `feature_extractor.py`) extracts wether the given string is included inside the tweet. 
+It was decided not to make a distinction between upper and lower case, as the statement whether a tweet goes viral is probably not very meaningful. 
+It is more important whether the transferred word is actually present or not. When calling the function there is the possibility to give the wanted string, 
+otherwise an empty string will be taken as default (default = ""). This will result in an all false array.
+
 ### Dimensionality Reduction
 
 ### Classification
@@ -70,7 +76,7 @@ In addition, the functionality can be strictly separated from the tests.
 In the following, the implemented unit tests are described in a structured manner in the individual pipeline steps.
 
 ### Preprocessing
-Inside the folder `code` a new folder `preprocessing` was created to collect all unit tests for the newly created preprocessors.
+Inside the folder `test` a new folder `preprocessing` was created to collect all unit tests for the newly created preprocessors.
 These ones are described in the following.
 
 #### Counter Test
@@ -82,3 +88,25 @@ A set up function and four test cases are defined:
 - `def test_output_columns(self)`: Checks wether the output column given to the instance matches the output column of the instance.
 - `def test_counting_elements(self)`: Checks whether the counted total number of a single string element within the column was counted correctly.
 - `def test_counting_list_elements(self)`: Checks whether the counted number of a list of string elements within the column was counted correctly.
+
+### Feature Extraction
+Inside the folder `test` a new folder `feature_extraction` was created to collect all unit tests for the newly created feature extractors.
+These ones are described in the following.
+
+#### WantedStr Test
+The unit test `wanted_str_test.py` checks the functionality of the feature extractor `wanted_str.py`.
+This is needed to check for different use cases. It was produced as a simple unittest as well as a test driven unittest. 
+A set up function and several test cases are defined:
+- `def setUp(self)`: New instance of `WantedStr` are defined with different `wanted_str`, as well as the `INPUT_COLUMN` and a test input data frame.
+- `def test_input_columns(self)`: Checks wether the input column given to the instance matches the input column of the instance.
+- `def test_feature_name(self)`: Checks wether the feature name matches the one produced by the instance. 
+- `def test_list_of_wanted_str_true(self)`: Checks whether a wanted string which is included in the test tweet gets the feature true. 
+- `def test_list_of_wanted_str_false(self)`: Checks whether a wanted string which is not included in the test tweet gets the feature false. 
+- `def test_list_of_wanted_str_capital(self)`: Checks whether a wanted string with capital letters which is included as lower case in the test tweet gets the feature true. 
+- `def test_list_of_wanted_str_lower(self)`: Checks whether a wanted string with lower case which is included using capital letters in the test tweet gets the feature true. 
+- `def test_list_of_wanted_str_empty(self)`: Checks whether an empty string (default) gets the feature false.
+
+
+
+
+

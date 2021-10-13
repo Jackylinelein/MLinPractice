@@ -15,6 +15,7 @@ from code.feature_extraction.character_length import CharacterLength
 from code.feature_extraction.feature_collector import FeatureCollector
 from code.feature_extraction.hashtags import Hashtags
 from code.feature_extraction.tweet_total_count import TweetTotalCount
+from code.feature_extraction.wanted_str import WantedStr
 from code.util import COLUMN_TWEET, COLUMN_LABEL, COLUMN_HASHTAGS, COLUMN_USERNAME, SUFFIX_COUNTED
 
 
@@ -25,8 +26,9 @@ parser.add_argument("output_file", help = "path to the output pickle file")
 parser.add_argument("-e", "--export_file", help = "create a pipeline and export to the given location", default = None)
 parser.add_argument("-i", "--import_file", help = "import an existing pipeline from the given location", default = None)
 parser.add_argument("-c", "--char_length", action = "store_true", help = "compute the number of characters in the tweet")
-parser.add_argument("-ha", "--hashtags", action = "store_true",help = "store the number of hashtags of a tweet")
-parser.add_argument("-ttc", "--tweet_total_count", action = "store_true",help = "store the total number of tweets of the tweeter")
+parser.add_argument("-ha", "--hashtags", action = "store_true", help = "store the number of hashtags of a tweet")
+parser.add_argument("-ttc", "--tweet_total_count", action = "store_true", help = "store the total number of tweets of the tweeter")
+parser.add_argument("-ws", "--wanted_str", help = "stores if a given string is part of the tweet", default = "")
 args = parser.parse_args()
 
 # load data
@@ -50,6 +52,9 @@ else:    # need to create FeatureCollector manually
     
     if args.tweet_total_count:
         features.append(TweetTotalCount(COLUMN_USERNAME + SUFFIX_COUNTED))
+    
+    if args.wanted_str:
+        features.append(WantedStr(COLUMN_TWEET, args.wanted_str))
     
     # create overall FeatureCollector
     feature_collector = FeatureCollector(features)
