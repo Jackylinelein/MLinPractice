@@ -24,9 +24,13 @@ For example, in addition to the default username, the number of occurrences of t
 
 #### Data Analysis
 The `data_analysis.py` can plot extracted features in order to have an impression if the feature has some valid information on how a viral tweet can be classified. For instance, for
-the number of hashtags in a tweet it seems to be better if the tweet has more than 5 hashtags.
+the number of hashtags in a tweet it seems to be better if the tweet has more than 5 hashtags. Three different graphs can be plotted and saved. 
+1. The percentage of viral tweets within a certain feature. So how many tweets are viral if there are 5 hashtags in it.
+2. The percentage or relative frequency of tweets posted within a certain feature. So here you can see the percentage of how many tweets were viral (/not viral/overall) w.r.t. all feature values. So for instance, 0.1 of all tweets have 5 hashtags
+3. The absolute number of tweets posted within a certain feature. Look at 2). For example 30.000 tweets have 5 hashtags, 20.000 tweets have 6 hashtags and so on.
 
 ### Feature Extraction
+
 All features which where extracted additionally to the original project are described in the following.
 #### Class TweetTotalCount
 The `tweet_total_count.py` (inherits from the class `feature_extractor.py`) extracts the feature total counts of tweets made by a useer in the given data set.
@@ -45,7 +49,10 @@ For instance:
 "[]" - length is not greater than 2 -> 0 hashtags
 "["coolhashtag"]" - length is greater than 2 -> +1 hashtag
 "["cool", "hashtag"]" -> length is greater than 2-> +1 hashtag; one time "," -> 2 hashtags in total
-...
+
+#### date
+This feature looks when a tweet was posted w.r.t. the year, month, day and which weekday (monday-sunday). Here we just read out the overall date which is provided as year-month-day in the format "2012-05-21"
+Extracting this feature is quite easy as you only slice the format into year, month or day and for weekdays we use some package where you can read out the day by providing the whole date.
 
 #### Class WantedStr
 The `wanted_str.py` (inherits from the class `feature_extractor.py`) extracts wether the given string is included inside the tweet. 

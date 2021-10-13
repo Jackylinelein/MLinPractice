@@ -17,6 +17,7 @@ COLUMN_USERNAME = "username"
 # column names of novel columns for preprocessing
 COLUMN_LABEL = "label"
 COLUMN_PUNCTUATION = "tweet_no_punctuation"
+COLUMN_DATE = "date"
 
 SUFFIX_TOKENIZED = "_tokenized"
 SUFFIX_COUNTED = "_count"
