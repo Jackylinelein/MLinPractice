@@ -21,14 +21,17 @@ class WantedStrTest(unittest.TestCase):
         self.wanted_str_true = "test"
         self.wanted_str_feature_true = WantedStr(self.INPUT_COLUMN, self.wanted_str_true)
         
+        self.wanted_str_false = "not inside string"
+        self.wanted_str_feature_false = WantedStr(self.INPUT_COLUMN, self.wanted_str_false)
+        
         self.wanted_str_capital = "Test"
         self.wanted_str_feature_capital = WantedStr(self.INPUT_COLUMN, self.wanted_str_capital)
         
         self.wanted_str_lower = "this"
         self.wanted_str_feature_lower = WantedStr(self.INPUT_COLUMN, self.wanted_str_lower)
         
-        self.wanted_str_false = "not inside string"
-        self.wanted_str_feature_false = WantedStr(self.INPUT_COLUMN, self.wanted_str_false)
+        self.wanted_str_empty = ""
+        self.wanted_str_feature_empty = WantedStr(self.INPUT_COLUMN, self.wanted_str_empty)
         
      
     def test_input_columns(self):
@@ -57,6 +60,11 @@ class WantedStrTest(unittest.TestCase):
     def test_list_of_wanted_str_lower(self):
         EXPECTED_ANSWER = True
         self.assertEqual(self.wanted_str_feature_lower.transform(self.df), EXPECTED_ANSWER)
+                
+
+    def test_list_of_wanted_str_empty(self):
+        EXPECTED_ANSWER = False
+        self.assertEqual(self.wanted_str_feature_empty.transform(self.df), EXPECTED_ANSWER)
         
         
 if __name__ == '__main__':

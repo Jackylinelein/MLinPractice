@@ -23,13 +23,16 @@ class WantedStr(FeatureExtractor):
     def _get_values(self, inputs):
                
         wanted_str_list = np.zeros((len(inputs[0]),1))
-        
-        for i in range(len(inputs[0])):
-            tweet = inputs[0][i]
-            if self._wanted_str in tweet.lower():
-                wanted_str_list[i][0] = True
-            else:
+        if (self._wanted_str != ""):
+            for i in range(len(inputs[0])):
+                tweet = inputs[0][i]
+                if self._wanted_str in tweet.lower():
+                    wanted_str_list[i][0] = True
+                else:
+                    wanted_str_list[i][0] = False
+        else:
+            for i in range(len(inputs[0])):
                 wanted_str_list[i][0] = False
-
+                
         return wanted_str_list
     
