@@ -69,7 +69,9 @@ def plot():
             plt.xlabel(x_axis)
             plt.ylabel(y_axis)
             plt.legend()
+            plt.savefig("plots/viral_percent_" + x_axis + ".png")
             plt.show()
+            
  
             
             # percentage of tweets (viral, not viral, all) w.r.t. feature 
@@ -77,10 +79,11 @@ def plot():
             plt.hist(feature,  weights =np.zeros_like(feature)+1. /feature.size, label="all tweets", color='blue')
             plt.hist(neg, weights =np.zeros_like(neg)+1. /feature.size, color = 'red', label = "not viral tweets")
             plt.hist(pos, weights =np.zeros_like(pos)+1. /feature.size ,color = 'green', label="viral tweets")
-            #plt.plot(baseline, color = 'red', label = "baseline")
+            
             plt.xlabel(x_axis)
             plt.ylabel(y_axis)
             plt.legend()
+            plt.savefig("plots/tweets_percent_" + x_axis + ".png")
             plt.show()
             
             # total amount of tweets (viral, not viral, all) w.r.t. feature
@@ -91,6 +94,7 @@ def plot():
             plt.legend()
             plt.xlabel(x_axis)
             plt.ylabel(y_axis)
+            plt.savefig("plots/tweets_total_" + x_axis + ".png")
             plt.show()
             
 plot()
