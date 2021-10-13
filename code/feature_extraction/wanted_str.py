@@ -15,7 +15,7 @@ class WantedStr(FeatureExtractor):
     # constructor
     def __init__(self, input_column, wanted_str):
         super().__init__([input_column], "{0}_wanted_str".format(input_column))
-        self._wanted_str = wanted_str
+        self._wanted_str = wanted_str.lower()
     
     # don't need to fit, so don't overwrite _set_variables()
     
@@ -24,11 +24,12 @@ class WantedStr(FeatureExtractor):
                
         wanted_str_list = np.zeros((len(inputs[0]),1))
         
-        for tweet in inputs[0]:
-            
-            if wanted_str in tweet:
-                wanted_str_list.append(True)
+        for i in range(len(inputs[0])):
+            tweet = inputs[0][i]
+            if self._wanted_str in tweet.lower():
+                wanted_str_list[i][0] = True
             else:
-                wanted_str_list.append(False)
+                wanted_str_list[i][0] = False
 
         return wanted_str_list
+    
