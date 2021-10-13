@@ -91,6 +91,7 @@ The features to be extracted can be configured with the following optional param
 - `-c` or `--char_length`: Count the number of characters in the "tweet" column of the data frame. (see code/feature_extraction/character_length.py)
 - `-ha` or `--hashtags`: Count the number of hashtags given in a tweet. (see code/feature_extraction/hashtags.py)
 - `-ttc` or `--tweet_total_count`: Gives the total number of tweets a user made. (see code/feature_extraction/tweet_total_count.py)
+- `-ws` or `--wanted_str`: Gives back if the given string (default = "") is part of the tweet or not. (see code/feature_extraction/wanted_str.py)
 
 
 Moreover, the script support importing and exporting fitted feature extractors with the following optional arguments:
@@ -163,4 +164,8 @@ The unit tests can be executed in general as follows:
 ### Preprocessing
 
 - The class `Counter` (file: `counter.py`) can be tested using: `python -m unittest test.preprocessing.counter_test`
+
+### Feature Extraction
+
+- The class `WantedStr` (file: `wanted_str.py`) can be tested using: `python -m unittest test.feature_extraction.wanted_str_test`
 
