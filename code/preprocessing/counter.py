@@ -3,10 +3,8 @@
 """
 Counts how often a element is present in the list.
 
-@author: jnaether
+@author: jnaether, htimm
 """
-
-import datetime
 
 import numpy as np
 from code.preprocessing.preprocessor import Preprocessor
