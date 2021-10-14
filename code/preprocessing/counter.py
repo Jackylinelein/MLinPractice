@@ -16,16 +16,12 @@ class Counter(Preprocessor):
         """Initialize the Counter with the given input and output column."""
         super().__init__([input_column], output_column)
     
-    
     # don't need to implement _set_variables(), since no variables to set
-    
-    
-    
+
     def _get_values(self, inputs):
         """Count total number of elements in input list."""
      
         user_dict = {}
-    
         total_count= np.zeros((len(inputs[0]),1)) 
         
         for user_name in inputs[0]:
@@ -40,16 +36,6 @@ class Counter(Preprocessor):
             counter+=1
                  
         return total_count
-    
-   
-    
-    # sorts all elements inside the list elements of the input list
-    def _sort_list_elements(self, input_list):
-        
-        for list_element in input_list:
-            list_element.sort()
-        
-        return input_list
-    
+
     
         
