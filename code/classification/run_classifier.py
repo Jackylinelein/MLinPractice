@@ -16,6 +16,7 @@ from sklearn.metrics import accuracy_score, precision_score, cohen_kappa_score, 
 from sklearn.metrics import accuracy_score, cohen_kappa_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB, BernoulliNB
 from sklearn.pipeline import make_pipeline
 
 
@@ -28,6 +29,8 @@ parser.add_argument("-i", "--import_file", help = "import a trained classifier f
 parser.add_argument("-m", "--majority", action = "store_true", help = "majority class classifier")
 parser.add_argument("-f", "--frequency", action = "store_true", help = "label frequency classifier")
 parser.add_argument("--knn", type = int, help = "k nearest neighbor classifier with the specified value of k", default = None)
+parser.add_argument("-gnb", "--gaussian_naive_bayes", type = float, help = "gaussian naive bayes classifier with specified value of var_smoothing", default = 0.000000001)
+parser.add_argument("-bnb", "--bernoulli_naive_bayes", type = float, help = "bernoulli naive bayes classifier with specified value of alpha", default = 1.0)
 parser.add_argument("-a", "--accuracy", action = "store_true", help = "evaluate using accuracy")
 parser.add_argument("-p", "--precision", action = "store_true", help = "evaluate using precision")
 parser.add_argument("-k", "--kappa", action = "store_true", help = "evaluate using Cohen's kappa")
@@ -56,12 +59,23 @@ else:   # manually set up a classifier
         print("    label frequency classifier")
         classifier = DummyClassifier(strategy = "stratified", random_state = args.seed)
         
-    
     elif args.knn is not None:
         print("    {0} nearest neighbor classifier".format(args.knn))
         standardizer = StandardScaler()
         knn_classifier = KNeighborsClassifier(args.knn)
         classifier = make_pipeline(standardizer, knn_classifier)
+    
+    elif args.gaussian_naive_bayes:
+        print("    gaussian naive bayes classifier")
+        standardizer = StandardScaler()
+        gnb_classifier = GaussianNB(var_smoothing = args.gaussian_naive_bayes)
+        classifier = make_pipeline(standardizer, gnb_classifier)
+    
+    elif args.bernoulli_naive_bayes:
+        print("    bernoulli naive bayes classifier")
+        standardizer = StandardScaler()
+        bnb_classifier = BernoulliNB(alpha = args.bernoulli_naive_bayes)
+        classifier = make_pipeline(standardizer, bnb_classifier) 
     
     classifier.fit(data["features"], data["labels"].ravel())
 
