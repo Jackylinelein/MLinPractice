@@ -75,7 +75,7 @@ This kind of classifier distributes the labels according to the multivariate Ber
 It was decided to implement these two Naive Bayes classifier, because the Bernoulli and Gaussian distribution are one of the most known and used distributions.
 #### Decision Tree
 It was decided to implement a simple decision tree classifier. 
-For this, the class `sklearn.tree.DecisionTreeClassifier` from the `sklearn` library was used for this. 
+For this, the class `sklearn.tree.DecisionTreeClassifier` from the `sklearn` library was used for. 
 Classification of a decision tree is based on simple decision rules. 
 The parameter for the maximum depth of the decision tree (max_depth, default = None) can be specified via a parser argument.
 #### Support Vector Machine
@@ -87,6 +87,11 @@ The parameter for the maximum number of iterations (max_iter, default = None) ca
 In addition to the decision tree, it was decided to include a random forest classifier. 
 This is integrated with the class `sklear.ensemble.RandomForestClassifier`. 
 Furthermore, the number of decision trees in the random forest can be defined via the parser argument (`n_estimators`, default: None).
+#### Multi Layer Perceptron
+It was decided to implement a multi layer perceptron classifier. 
+For this, the class `sklearn.neural_network.MLPClassifier` from the `sklearn` library was used for. 
+For classification a simple multi layer perceptron is used. 
+The parameter for the maximum number of iterations (max_iter, default = None) can be specified via a parser argument.
 #### Evaluation Metrics
 Different evaluation metrics newly learned in the lecture were integrated into the project as an extra. These are:
 - precision

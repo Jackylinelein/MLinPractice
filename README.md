@@ -136,6 +136,7 @@ By default, this data is used to train a classifier, which is specified by one o
 - `-dc` or `--decision_tree`: Decision Tree classifier with specified value of max_depth (maximum depth of tree, default: None), predicts the labels based on simple decision rules.
 - `-svc` or `--support_vector_machine`: Linear Support Vector classifier with specified value of max_iter (maximum iterations to be run, default: None), predicts the labels performing a binary and multi-class classification.
 - `-rf` or `--random_forest`: Random Forest classifier with specified value of n_estimators (number of trees inside the forest, default: None), predicts the labels using a number of decision tree classifier.
+- `-mlp` or `--multi_layer_perceptron`: Multi Layer Perceptron classifier with specified value of max_iter (maximum iterations to be run, default: None), predicts the labels using a simple multi layer perceptron.
 
 The classifier is then evaluated, using the evaluation metrics as specified through the following optional arguments:
 - `-a`or `--accuracy`: Classification accurracy (i.e., percentage of correctly classified examples).
