@@ -17,6 +17,7 @@ from sklearn.metrics import accuracy_score, cohen_kappa_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB, BernoulliNB
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.pipeline import make_pipeline
 
 
@@ -31,6 +32,7 @@ parser.add_argument("-f", "--frequency", action = "store_true", help = "label fr
 parser.add_argument("--knn", type = int, help = "k nearest neighbor classifier with the specified value of k", default = None)
 parser.add_argument("-gnb", "--gaussian_naive_bayes", type = float, help = "gaussian naive bayes classifier with specified value of var_smoothing", default = 0.000000001)
 parser.add_argument("-bnb", "--bernoulli_naive_bayes", type = float, help = "bernoulli naive bayes classifier with specified value of alpha", default = 1.0)
+parser.add_argument("-dt", "--decision_tree", type = int, help = "decision tree classifier with specifiled value of max_depth", default = None)
 parser.add_argument("-a", "--accuracy", action = "store_true", help = "evaluate using accuracy")
 parser.add_argument("-p", "--precision", action = "store_true", help = "evaluate using precision")
 parser.add_argument("-k", "--kappa", action = "store_true", help = "evaluate using Cohen's kappa")
@@ -76,6 +78,12 @@ else:   # manually set up a classifier
         standardizer = StandardScaler()
         bnb_classifier = BernoulliNB(alpha = args.bernoulli_naive_bayes)
         classifier = make_pipeline(standardizer, bnb_classifier) 
+    
+    elif args.decision_tree:
+        print("    decision tree classifier")
+        standardizer = StandardScaler()
+        dt_classifier = DecisionTreeClassifier(max_depth = args.decision_tree)
+        classifier = make_pipeline(standardizer, dt_classifier) 
     
     classifier.fit(data["features"], data["labels"].ravel())
 
