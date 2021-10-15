@@ -91,7 +91,7 @@ else:   # manually set up a classifier
         print("    linear support vector classifier")
         standardizer = StandardScaler()
         svc_classifier = LinearSVC(max_iter = args.support_vector_machine)
-        classifier = make_pipeline(standardizer, svc_classifier) 
+        classifier = make_pipeline(standardizer, svc_classifier)
     
     classifier.fit(data["features"], data["labels"].ravel())
 
