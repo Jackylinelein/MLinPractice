@@ -68,11 +68,16 @@ For this purpose, new parser arguments are added and some newly learned classifi
 #### Naive Bayes
 It was decided to implement two different types of Naive Bayes Classifier (`sklearn.naive_bayes`). 
 On the one hand the simplest type, the Gaussian Naive Bayes Classifier (`GaussianNB`) and on the other hand the Bernoulli Naive Bayes Classifier (`BernoulliNB`).
-The Gaussian Naive Bayes classifier can be specified with the given value of var_smoothing (portion of the largest variance, default: 1e-9). 
+The Gaussian Naive Bayes classifier can be specified with the given value of var_smoothing (portion of the largest variance, default: None). 
 For classification it uses the simple gaussian algorithm, thats why it assumed that the likelihood of the features is gaussian.  
-Moreover, the Bernoulli Naive Bayes classifier can be specified with a given value of alpha (additive smoothing parameter, default: 1.0). 
+Moreover, the Bernoulli Naive Bayes classifier can be specified with a given value of alpha (additive smoothing parameter, default: None). 
 This kind of classifier distributes the labels according to the multivariate Bernoulli distribution. 
 It was decided to implement these two Naive Bayes classifier, because the Bernoulli and Gaussian distribution are one of the most known and used distributions.
+#### Decision Tree
+It was decided to implement a simple decision tree classifier. 
+For this, the class `sklearn.tree.DecisionTreeClassifier` from the `sklearn` library was used for this. 
+Classification of a decision tree is based on simple decision rules. 
+The parameter for the maximum depth of the decision tree (max_depth, default = None) can be specified via a parser argument.
 
 #### Classifier
 - A new kind of classifier was implemented, using the dummy classifier class. It predicts on lable frequency in the training data.
