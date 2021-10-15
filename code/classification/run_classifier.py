@@ -19,6 +19,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB, BernoulliNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import LinearSVC
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.pipeline import make_pipeline
 
 
@@ -34,7 +35,8 @@ parser.add_argument("--knn", type = int, help = "k nearest neighbor classifier w
 parser.add_argument("-gnb", "--gaussian_naive_bayes", type = float, help = "gaussian naive bayes classifier with specified value of var_smoothing", default = None)
 parser.add_argument("-bnb", "--bernoulli_naive_bayes", type = float, help = "bernoulli naive bayes classifier with specified value of alpha", default = None)
 parser.add_argument("-dt", "--decision_tree", type = int, help = "decision tree classifier with specified value of max_depth", default = None)
-parser.add_argument("-svc", "--support_vector_machine", type = int, help = "linear support vector vlassifier with specified value of max_iter", default = None)
+parser.add_argument("-svc", "--support_vector_machine", type = int, help = "linear support vector classifier with specified value of max_iter", default = None)
+parser.add_argument("-rf", "--random_forest", type = int, help = "random forest classifier with specified value of n_estimators", default = None)
 parser.add_argument("-a", "--accuracy", action = "store_true", help = "evaluate using accuracy")
 parser.add_argument("-p", "--precision", action = "store_true", help = "evaluate using precision")
 parser.add_argument("-k", "--kappa", action = "store_true", help = "evaluate using Cohen's kappa")
@@ -92,6 +94,12 @@ else:   # manually set up a classifier
         standardizer = StandardScaler()
         svc_classifier = LinearSVC(max_iter = args.support_vector_machine)
         classifier = make_pipeline(standardizer, svc_classifier)
+
+    elif args.random_forest is not None:
+        print("    random forest classifier")
+        standardizer = StandardScaler()
+        rf_classifier = RandomForestClassifier(n_estimators = args.random_forest)
+        classifier = make_pipeline(standardizer, rf_classifier)
     
     classifier.fit(data["features"], data["labels"].ravel())
 
