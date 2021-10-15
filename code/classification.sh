@@ -5,9 +5,16 @@ mkdir -p data/classification/
 
 # run feature extraction on training set (may need to fit extractors)
 echo "  training set"
-
-python -m code.classification.run_classifier data/dimensionality_reduction/training.pickle -e data/classification/classifier.pickle --knn5 -s 42 --accuracy --kappa
-
+# Classifier Majority
+python -m code.classification.run_classifier data/dimensionality_reduction/training.pickle -e data/classification/classifier.pickle --majority -s 42 --accuracy --kappa
+# Classifier Frequency
+python -m code.classification.run_classifier data/dimensionality_reduction/training.pickle -e data/classification/classifier.pickle --frequency -s 42 --accuracy --kappa
+# Classifier KNN
+python -m code.classification.run_classifier data/dimensionality_reduction/training.pickle -e data/classification/classifier.pickle --knn 5 -s 42 --accuracy --kappa
+# Classifier Gaussian Naive Bayes
+python -m code.classification.run_classifier data/dimensionality_reduction/training.pickle -e data/classification/classifier.pickle --gaussian_naive_bayes 0.000000008 -s 42 --accuracy --kappa
+# Classifier Bernoulli Naive Bayes
+python -m code.classification.run_classifier data/dimensionality_reduction/training.pickle -e data/classification/classifier.pickle --bernoulli_naive_bayes 1.0 -s 42 --accuracy --kappa
 
 # run feature extraction on validation set (with pre-fit extractors)
 echo "  validation set"

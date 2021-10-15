@@ -130,6 +130,9 @@ Here, `input.pickle` is a pickle file of the respective data subset, produced by
 By default, this data is used to train a classifier, which is specified by one of the following optional arguments:
 - `-m` or `--majority`: Majority vote classifier that always predicts the majority class.
 - `-f` or `--frequency`: Dummy classifier that predicts on label frequency in the training data.
+- `-knn`: K nearest neighbor classifier with the specified value of k computes the labels based on the mean of labels of its nearest neighbors.
+- `-gnb` or `--gaussian_naive_bayes`: Gaussian Naive Bayes classifier with specified value of var_smoothing (portion of the largest variance, default: 1e-9), easiest form of a Naive Bayes Classifier.
+- `-bnb` or `--bernoulli_naive_bayes`: Bernoulli Naive Bayes classifier with specified value of alpha (additive smoothing parameter, default: 1.0), a form of a Naive Bayes Classifier which distributs the labels according to multivariate Bernoulli distributions.
 
 The classifier is then evaluated, using the evaluation metrics as specified through the following optional arguments:
 - `-a`or `--accuracy`: Classification accurracy (i.e., percentage of correctly classified examples).
