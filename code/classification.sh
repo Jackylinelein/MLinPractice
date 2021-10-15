@@ -22,6 +22,9 @@ python -m code.classification.run_classifier data/dimensionality_reduction/train
 python -m code.classification.run_classifier data/dimensionality_reduction/training.pickle -e data/classification/classifier.pickle --support_vector_machine 10000 -s 42 --accuracy --kappa --recall --f_measure 
 # Classifier Random Forest
 python -m code.classification.run_classifier data/dimensionality_reduction/training.pickle -e data/classification/classifier.pickle --random_forest 100 -s 42 --accuracy --kappa --recall --f_measure 
+# Classifier Multi Layeer Perceptron
+python -m code.classification.run_classifier data/dimensionality_reduction/training.pickle -e data/classification/classifier.pickle --multi_layer_perceptron 1 -s 42 --accuracy --kappa --recall --f_measure 
+
 
 # run feature extraction on validation set (with pre-fit extractors)
 echo "  validation set"
