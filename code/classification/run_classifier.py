@@ -17,6 +17,8 @@ from sklearn.metrics import accuracy_score, cohen_kappa_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB, BernoulliNB
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import LinearSVC
 from sklearn.pipeline import make_pipeline
 
 
@@ -29,8 +31,10 @@ parser.add_argument("-i", "--import_file", help = "import a trained classifier f
 parser.add_argument("-m", "--majority", action = "store_true", help = "majority class classifier")
 parser.add_argument("-f", "--frequency", action = "store_true", help = "label frequency classifier")
 parser.add_argument("--knn", type = int, help = "k nearest neighbor classifier with the specified value of k", default = None)
-parser.add_argument("-gnb", "--gaussian_naive_bayes", type = float, help = "gaussian naive bayes classifier with specified value of var_smoothing", default = 0.000000001)
-parser.add_argument("-bnb", "--bernoulli_naive_bayes", type = float, help = "bernoulli naive bayes classifier with specified value of alpha", default = 1.0)
+parser.add_argument("-gnb", "--gaussian_naive_bayes", type = float, help = "gaussian naive bayes classifier with specified value of var_smoothing", default = None)
+parser.add_argument("-bnb", "--bernoulli_naive_bayes", type = float, help = "bernoulli naive bayes classifier with specified value of alpha", default = None)
+parser.add_argument("-dt", "--decision_tree", type = int, help = "decision tree classifier with specified value of max_depth", default = None)
+parser.add_argument("-svc", "--support_vector_machine", type = int, help = "linear support vector vlassifier with specified value of max_iter", default = None)
 parser.add_argument("-a", "--accuracy", action = "store_true", help = "evaluate using accuracy")
 parser.add_argument("-p", "--precision", action = "store_true", help = "evaluate using precision")
 parser.add_argument("-k", "--kappa", action = "store_true", help = "evaluate using Cohen's kappa")
@@ -65,17 +69,29 @@ else:   # manually set up a classifier
         knn_classifier = KNeighborsClassifier(args.knn)
         classifier = make_pipeline(standardizer, knn_classifier)
     
-    elif args.gaussian_naive_bayes:
+    elif args.gaussian_naive_bayes is not None:
         print("    gaussian naive bayes classifier")
         standardizer = StandardScaler()
         gnb_classifier = GaussianNB(var_smoothing = args.gaussian_naive_bayes)
         classifier = make_pipeline(standardizer, gnb_classifier)
     
-    elif args.bernoulli_naive_bayes:
+    elif args.bernoulli_naive_bayes is not None:
         print("    bernoulli naive bayes classifier")
         standardizer = StandardScaler()
         bnb_classifier = BernoulliNB(alpha = args.bernoulli_naive_bayes)
         classifier = make_pipeline(standardizer, bnb_classifier) 
+    
+    elif args.decision_tree is not None:
+        print("    decision tree classifier")
+        standardizer = StandardScaler()
+        dt_classifier = DecisionTreeClassifier(max_depth = args.decision_tree)
+        classifier = make_pipeline(standardizer, dt_classifier)
+
+    elif args.support_vector_machine is not None:
+        print("    linear support vector classifier")
+        standardizer = StandardScaler()
+        svc_classifier = LinearSVC(max_iter = args.support_vector_machine)
+        classifier = make_pipeline(standardizer, svc_classifier)
     
     classifier.fit(data["features"], data["labels"].ravel())
 
@@ -100,7 +116,7 @@ if args.f_measure:
     evaluation_metrics.append(("f_measure", f1_score))
 # compute and print them
 for metric_name, metric in evaluation_metrics:
-    print("    {0}: {1}".format(metric_name, metric(data["labels"], prediction)))
+    print("        {0}: {1}".format(metric_name, metric(data["labels"], prediction)))
 
 # export the trained classifier if the user wants us to do so
 if args.export_file is not None:
