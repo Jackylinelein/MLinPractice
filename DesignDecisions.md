@@ -78,10 +78,12 @@ It was decided to implement a simple decision tree classifier.
 For this, the class `sklearn.tree.DecisionTreeClassifier` from the `sklearn` library was used for this. 
 Classification of a decision tree is based on simple decision rules. 
 The parameter for the maximum depth of the decision tree (max_depth, default = None) can be specified via a parser argument.
+#### Support Vector Machine
+It was decided to implement a support vetor machine using the libary `sklearn.svm`. 
+A Linear Support Vecotr Classifier (`LinearSVC`) was choosen, because it's a faster implementation of the original Support Vector Machine. 
+Especially for large datasets including a big amomunt of samples the `LinearSVC` is the best choice. 
+The parameter for the maximum number of iterations (max_iter, default = None) can be specified via a parser argument.
 
-#### Classifier
-- A new kind of classifier was implemented, using the dummy classifier class. It predicts on lable frequency in the training data.
-for later use.
 #### Evaluation Metrics
 Different evaluation metrics newly learned in the lecture were integrated into the project as an extra. These are:
 - precision

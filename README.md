@@ -134,7 +134,7 @@ By default, this data is used to train a classifier, which is specified by one o
 - `-gnb` or `--gaussian_naive_bayes`: Gaussian Naive Bayes classifier with specified value of var_smoothing (portion of the largest variance, default: None), easiest form of a Naive Bayes Classifier.
 - `-bnb` or `--bernoulli_naive_bayes`: Bernoulli Naive Bayes classifier with specified value of alpha (additive smoothing parameter, default: None), a form of a Naive Bayes Classifier which distributs the labels according to multivariate Bernoulli distributions.
 - `-dc` or `--decision_tree`: Decision Tree classifier with specified value of max_depth (maximum depth of tree, default: None), predicts the labels based on simple decision rules.
-
+- `-svc` or `--support_vector_machine`: Linear Support Vector classifier with specified value of max_iter (maximum iterations to be run, default: None), predicts the labels performing a binary and multi-class classification.
 
 The classifier is then evaluated, using the evaluation metrics as specified through the following optional arguments:
 - `-a`or `--accuracy`: Classification accurracy (i.e., percentage of correctly classified examples).
