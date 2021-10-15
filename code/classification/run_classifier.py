@@ -28,6 +28,7 @@ parser.add_argument("-i", "--import_file", help = "import a trained classifier f
 parser.add_argument("-m", "--majority", action = "store_true", help = "majority class classifier")
 parser.add_argument("-f", "--frequency", action = "store_true", help = "label frequency classifier")
 parser.add_argument("--knn", type = int, help = "k nearest neighbor classifier with the specified value of k", default = None)
+parser.add_argument("-nb", "--naive_bayes", type = int, help = "naive bayes classifier", default = None)
 parser.add_argument("-a", "--accuracy", action = "store_true", help = "evaluate using accuracy")
 parser.add_argument("-p", "--precision", action = "store_true", help = "evaluate using precision")
 parser.add_argument("-k", "--kappa", action = "store_true", help = "evaluate using Cohen's kappa")
@@ -56,12 +57,15 @@ else:   # manually set up a classifier
         print("    label frequency classifier")
         classifier = DummyClassifier(strategy = "stratified", random_state = args.seed)
         
-    
     elif args.knn is not None:
         print("    {0} nearest neighbor classifier".format(args.knn))
         standardizer = StandardScaler()
         knn_classifier = KNeighborsClassifier(args.knn)
         classifier = make_pipeline(standardizer, knn_classifier)
+    
+    elif args.naive_bayes:
+        #TODO: new naive bayes classifer
+        pass
     
     classifier.fit(data["features"], data["labels"].ravel())
 
