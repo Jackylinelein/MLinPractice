@@ -83,7 +83,10 @@ It was decided to implement a support vetor machine using the libary `sklearn.sv
 A Linear Support Vecotr Classifier (`LinearSVC`) was choosen, because it's a faster implementation of the original Support Vector Machine. 
 Especially for large datasets including a big amomunt of samples the `LinearSVC` is the best choice. 
 The parameter for the maximum number of iterations (max_iter, default = None) can be specified via a parser argument.
-
+#### Random Forest
+In addition to the decision tree, it was decided to include a random forest classifier. 
+This is integrated with the class `sklear.ensemble.RandomForestClassifier`. 
+Furthermore, the number of decision trees in the random forest can be defined via the parser argument (`n_estimators`, default: None).
 #### Evaluation Metrics
 Different evaluation metrics newly learned in the lecture were integrated into the project as an extra. These are:
 - precision
