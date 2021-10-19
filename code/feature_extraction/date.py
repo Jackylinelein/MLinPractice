@@ -45,7 +45,7 @@ class Month(FeatureExtractor):
           month_array[counter] = month[5:7]
           counter+=1
          
-          return month_array
+       return month_array
     
 class Day(FeatureExtractor):
    
