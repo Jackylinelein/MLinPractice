@@ -14,6 +14,7 @@ import numpy as np
 
 # create graphs for every extracted feature
 def plot():
+    print("Plotting graphs")
     with open("data/feature_extraction/training.pickle", "rb") as f_in:
         data = pickle.load(f_in)
         labels = data["labels"]
@@ -96,6 +97,7 @@ def plot():
             plt.ylabel(y_axis)
             plt.savefig("plots/tweets_total_" + x_axis + ".png")
             plt.show()
+            
             
 plot()
 
