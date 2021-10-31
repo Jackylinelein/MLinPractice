@@ -6,7 +6,7 @@ mkdir -p data/feature_extraction/
 # run feature extraction on training set (may need to fit extractors)
 echo "  training set"
 
-python -m code.feature_extraction.extract_features data/preprocessing/split/training.csv data/feature_extraction/training.pickle -e data/feature_extraction/pipeline.pickle --char_length --hashtags --date --tweet_total_count --wanted_str data 
+python -m code.feature_extraction.extract_features data/preprocessing/split/training.csv data/feature_extraction/training.pickle -e data/feature_extraction/pipeline.pickle --char_length --hashtags --date --tweet_total_count --wanted_str science 
 # run data_analysis for plotting graphs
 python -c'import code.data_analysis; code.data_analysis.plot()'
 
